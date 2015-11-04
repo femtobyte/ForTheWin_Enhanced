@@ -6,10 +6,10 @@
 //  Copyright © 2015 femtobyte. All rights reserved.
 //
 
-//when attack is pressed while other players attack is disabled, and game ends then, timer call will enable one more button press.  so put a check for if players are dead before enabling
-//  need to update playerEntryButton to clear playerOne name and prompt PlayerTwo name//  should include a welcome to players to give better feel of name being registered.
+//  Feature ideas and bugs:
+//  bug: restart button doesn't work
 //  A New Game button could be added where you would choose new chars again. Will keep restart as just replaying new game with same chars.
-
+//  changing orientation of images so they always face each other would be nice
 
 import UIKit
 
@@ -34,6 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playerNameEntry: UITextField!
     @IBOutlet weak var newGameInstructLbl: UILabel!
     
+    @IBOutlet weak var groundImg: UIImageView!
     @IBOutlet weak var enemyBtn: UIButton!
     @IBOutlet weak var playerBtn: UIButton!
     var playerOne: Player!
@@ -46,14 +47,21 @@ class ViewController: UIViewController {
         
     }
     
+    // handles dismissing keyboard if you touch outside the keyboard
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
     func initializePlayers(){
         if playerNameEntry.text != nil && playerNameEntry.text != ""{
             if let name = playerNameEntry.text{
                 playerNames.append(name)
+                playerNameEntry.text = ""
             }
         }
         if playerNames.count == 1{
-            newGameInstructLbl.text = "Player Two: Enter your name and choose your character "
+            newGameInstructLbl.text = "Welcome \(playerNames[0])!  Player Two: Enter your name and choose your character "
         }
 
         if playerNames.count == 2 && playerTypes.count == 2{
@@ -69,6 +77,7 @@ class ViewController: UIViewController {
         enemyBtn.hidden = true
         playerBtn.hidden = true
         
+        groundImg.hidden = false
         attackStack.hidden = false
         playerStack.hidden = false
         attack1Lbl.hidden = false
@@ -76,12 +85,21 @@ class ViewController: UIViewController {
         ReadOutLbl.hidden = false
         player1HPLbl.hidden = false
         player2HPLbl.hidden = false
+        if(playerOne.charType == "player"){
+            playerOneImg.transform = CGAffineTransformMakeScale(-1, 1)}
+        if(playerTwo.charType == "enemy"){
+            playerTwoImg.transform = CGAffineTransformMakeScale(-1, 1)}
         playerOneImg.image = UIImage(named:"\(playerOne.charType)")
         playerTwoImg.image = UIImage(named:"\(playerTwo.charType)")
         player1HPLbl.text = "\(playerOne.hp) HP"
         player2HPLbl.text = "\(playerTwo.hp) HP"
 
     }
+    
+    func flipImage(player: Player){
+        
+    }
+    
     func disableAttackBtns(){
         player1Btn.enabled = false
         player2Btn.enabled = false
@@ -119,6 +137,7 @@ class ViewController: UIViewController {
             ReadOutLbl.text = "\(playerOne.name) hit \(playerTwo.name) for \(playerOne.ap)"
         }
         self.player2Btn.enabled = false
+        timer("enableAttackBtns")
         if !playerTwo.isAlive{
             player2HPLbl.text = "0"
             endGame(playerOne)
@@ -131,6 +150,7 @@ class ViewController: UIViewController {
             ReadOutLbl.text = "\(playerTwo.name) hit \(playerOne.name) for \(playerTwo.ap)"
         }
         self.player1Btn.enabled = false
+        timer("enableAttackBtns")
         if !playerOne.isAlive{
             player1HPLbl.text = "0 HP"
             endGame(playerTwo)

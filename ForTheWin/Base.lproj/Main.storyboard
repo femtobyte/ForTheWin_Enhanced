@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ground" translatesAutoresizingMaskIntoConstraints="NO" id="Vdb-TI-FZw">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ground" translatesAutoresizingMaskIntoConstraints="NO" id="Vdb-TI-FZw">
                                 <rect key="frame" x="0.0" y="505" width="600" height="95"/>
                                 <animations/>
                                 <constraints>
@@ -35,6 +35,21 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqv-0D-FFx">
+                                <rect key="frame" x="194" y="181" width="212" height="78"/>
+                                <animations/>
+                                <state key="normal" image="player1attackbtn"/>
+                                <connections>
+                                    <action selector="onRestartBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jrf-oe-CaU"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-I5-la9" userLabel="RestartLbl">
+                                <rect key="frame" x="266" y="202" width="68" height="29"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="P8K-jS-Byz" userLabel="PlayerStack">
                                 <rect key="frame" x="0.0" y="305" width="600" height="200"/>
                                 <subviews>
@@ -128,21 +143,6 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqv-0D-FFx">
-                                <rect key="frame" x="194" y="261" width="212" height="78"/>
-                                <animations/>
-                                <state key="normal" image="player1attackbtn"/>
-                                <connections>
-                                    <action selector="onRestartBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FeL-4q-dhn"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAG-I5-la9" userLabel="RestartLbl">
-                                <rect key="frame" x="266" y="282" width="68" height="29"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press Attack to Attack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKj-QD-tTc">
                                 <rect key="frame" x="200" y="534" width="200" height="56"/>
                                 <animations/>
@@ -178,8 +178,8 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player One's Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAi-gp-z0T">
-                                        <rect key="frame" x="146" y="25" width="144" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Player Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAi-gp-z0T">
+                                        <rect key="frame" x="148" y="25" width="140" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -187,21 +187,32 @@
                                 </subviews>
                                 <animations/>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="U8u-kG-o3e">
-                                <rect key="frame" x="-12" y="297" width="560" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="250" translatesAutoresizingMaskIntoConstraints="NO" id="U8u-kG-o3e">
+                                <rect key="frame" x="20" y="370" width="560" height="135"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AZ-Aw-abO" userLabel="enemyBtn">
-                                        <rect key="frame" x="0.0" y="0.0" width="220" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="135"/>
                                         <animations/>
-                                        <state key="normal" image="enemy"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="PRd-Nq-LkC"/>
+                                            <constraint firstAttribute="height" constant="135" id="vmm-cp-qzT"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="4"/>
+                                        <inset key="imageEdgeInsets" minX="1" minY="1" maxX="1" maxY="1"/>
+                                        <state key="normal" image="enemy" backgroundImage="text-holder"/>
                                         <connections>
                                             <action selector="onEnemyPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bQT-cl-YB5"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOj-fx-mUa" userLabel="playerBtn">
-                                        <rect key="frame" x="340" y="0.0" width="220" height="150"/>
+                                        <rect key="frame" x="410" y="0.0" width="150" height="135"/>
                                         <animations/>
-                                        <state key="normal" image="player"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="135" id="lV8-E0-pLw"/>
+                                            <constraint firstAttribute="width" constant="150" id="r5h-kN-Khl"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="6" maxY="5"/>
+                                        <state key="normal" image="player" backgroundImage="text-holder"/>
                                         <connections>
                                             <action selector="onPlayerPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zNK-yg-Oy6"/>
                                         </connections>
@@ -211,6 +222,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="5Ba-WZ-kZa"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5Ba-WZ-kZa"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <animations/>
@@ -241,7 +257,7 @@
                             <constraint firstItem="AdH-Vj-Fjr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dI8-hG-1sr"/>
                             <constraint firstItem="flK-a5-lRM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="h98-v0-dYc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ef4-3l-BtG" secondAttribute="trailing" id="hUh-N5-6JA"/>
-                            <constraint firstItem="Kqv-0D-FFx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="j0X-3E-tsX"/>
+                            <constraint firstAttribute="centerY" secondItem="Kqv-0D-FFx" secondAttribute="centerY" constant="80" id="j0X-3E-tsX"/>
                             <constraint firstItem="hgx-Dz-tXr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oBC-jP-kHi"/>
                             <constraint firstItem="Vdb-TI-FZw" firstAttribute="top" secondItem="P8K-jS-Byz" secondAttribute="bottom" id="ppG-5d-Z6a"/>
                             <constraint firstItem="Kqv-0D-FFx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sV5-nt-DDq"/>
@@ -258,6 +274,7 @@
                         <outlet property="attack2Lbl" destination="ZuB-SV-B9Q" id="vnI-ve-sav"/>
                         <outlet property="attackStack" destination="NIe-pB-mFf" id="cKH-zX-SCz"/>
                         <outlet property="enemyBtn" destination="6AZ-Aw-abO" id="aLT-cy-rZN"/>
+                        <outlet property="groundImg" destination="Vdb-TI-FZw" id="yc8-Ye-hkK"/>
                         <outlet property="newGameInstructLbl" destination="RH9-hJ-tyx" id="6a0-PO-Cm6"/>
                         <outlet property="player1Btn" destination="jsI-uj-1uP" id="Psb-El-tbG"/>
                         <outlet property="player1HPLbl" destination="hgx-Dz-tXr" id="6bM-K4-EkQ"/>
